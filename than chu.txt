@@ -1,0 +1,15 @@
+
+
+
+
+// Start emulator by command line
+C:\Users\phong\AppData\Local\Android\Sdk\emulator\emulator @Nexus_5X_API_28
+
+// Run test app in emulator
+ionic cordova run android
+
+// One command test
+ionic cordova run android --target=Nexus_5X_API_28
+
+// Icon and Splash screen change
+https://www.youtube.com/watch?v=dF_QvXxxNOE

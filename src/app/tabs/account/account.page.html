@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tài khoản</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!isLoggedIn">
+      <form  #form="ngForm" (ngSubmit)="login(form)">
+          <ion-grid>
+            <ion-row color="primary" justify-content-center>
+              <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <div text-center>
+                  <h3>Đăng nhập để tiếp tục</h3>
+                </div>
+                <div padding>
+                  <ion-item>
+                    <ion-input name="login" type="text" placeholder="Email hoặc điện thoại" ngModel required></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-input name="password" type="password" placeholder="Mật khẩu" ngModel required></ion-input>
+                  </ion-item>
+                </div>
+                <div padding text-center>
+                  <ion-button  size="normal" type="submit"  >Đăng nhập</ion-button>
+                </div>
+                <div padding text-center>
+                  <ion-label>Chưa có tài khoản ? </ion-label>
+                  <a routerLink="/register">Đăng ký</a>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+  </div>
+  
+  <div *ngIf="isLoggedIn">
+      <ion-list>
+          <ion-item (click)="changeInfo(account.email, 'email')" detail>
+            <ion-label>  Email : </ion-label>
+            <ion-label> {{account.email}}  </ion-label>
+          </ion-item>
+        
+          <ion-item (click)="buttonClick()" detail>
+            <ion-label>  Điện thoại : </ion-label>
+            <ion-label> {{account.phone}}  </ion-label>
+          </ion-item>
+
+          <ion-item (click)="buttonClick()" detail>
+            <ion-label>  Họ Tên : </ion-label>
+            <ion-label> {{account.fullname}}  </ion-label>
+          </ion-item>
+        
+        </ion-list>
+  </div>
+  
+
+
+</ion-content>
