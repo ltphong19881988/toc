@@ -12,7 +12,7 @@ export class AccountPage implements OnInit {
   account = {email : 'test@gmail.com', phone : '0985344672', fullname : 'Phong Le'};
   constructor(private auth : AuthGuardService, private alertController: AlertController, public navCtrl: NavController) {
     //this.isLoggedIn = auth.canActivate();
-    this.isLoggedIn = true;
+    this.isLoggedIn = false;
   }
 
   ngOnInit() {

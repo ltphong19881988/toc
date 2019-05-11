@@ -17,10 +17,7 @@ const routes: Routes = [
   //   path: 'list',
   //   loadChildren: './list/list.module#ListPageModule'
   // },
-  // { path: 'products', loadChildren: './pages/products/products.module#ProductsPageModule' },
-  // { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
-  // { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  // { path: 'home', loadChildren: './tabs/home/home.module#HomePageModule' },
+
 ];
 
 @NgModule({

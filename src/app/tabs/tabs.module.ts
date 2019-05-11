@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { TabsPage } from './tabs.page';
-
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
 const routes: Routes = [

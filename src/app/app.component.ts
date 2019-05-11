@@ -60,10 +60,10 @@ export class AppComponent {
     this.backButtonEvent();
 
     // let status bar overlay webview
-    this.statusBar.overlaysWebView(true);
+    this.statusBar.overlaysWebView(false);
 
     // set status bar to white
-    this.statusBar.backgroundColorByHexString('#ffffff');
+    this.statusBar.backgroundColorByHexString('#1F6912');
 
   }
   
