@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { Storage, IonicStorageModule } from '@ionic/storage';
 
 import { AccountPage } from './account.page';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    IonicStorageModule.forRoot(),
     RouterModule.forChild(routes)
   ],
   declarations: [AccountPage]

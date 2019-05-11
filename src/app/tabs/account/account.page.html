@@ -9,7 +9,7 @@
 
 <ion-content>
   <div *ngIf="!isLoggedIn">
-      <form  #form="ngForm" (ngSubmit)="login(form)">
+      <form  #form="ngForm" (ngSubmit)="doLogin(form)">
           <ion-grid>
             <ion-row color="primary" justify-content-center>
               <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
@@ -55,6 +55,10 @@
           </ion-item>
         
         </ion-list>
+        <div padding>
+            <ion-button  size="large" (click)="doLogout()"  expand="block" color="dark">Đăng xuất</ion-button>
+            <ion-button  size="large" (click)="doClear()"  expand="block" color="danger">Xóa tài khoản</ion-button>
+          </div>
   </div>
   
 
