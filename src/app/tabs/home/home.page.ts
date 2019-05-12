@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient  } from '@angular/common/http';
 import { IonSlides } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { HTTP } from '@ionic-native/http/ngx';
@@ -23,9 +24,21 @@ export class HomePage implements OnInit {
     }
   ]
 
-  reqObj = null;
+  sanphamtoc = null;
 
-  constructor(public alertCtrl: AlertController, private http: HTTP, private file: File) {}
+  constructor(public alertCtrl: AlertController, private http: HttpClient , private file: File) {
+    this.http.get('../../assets/data/sanphamtoc.json').subscribe((response) => {
+      this.sanphamtoc = response;
+    });
+    // this.http.get('/src/assets/data/sanphamtoc.json', {}, {})
+    // .then(data => {
+    //   console.log(JSON.parse(data.data));
+    // })
+    // .catch(error => {
+    //   console.log('dada', error);
+    //   this.reqObj = error;
+    // });
+  }
 
   @ViewChild('mySlider') slides: IonSlides;
 
