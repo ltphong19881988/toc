@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
 import { IonSlides } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 import { HTTP } from '@ionic-native/http/ngx';
 import { File } from '@ionic-native/file/ngx';
 
@@ -26,7 +27,7 @@ export class HomePage implements OnInit {
 
   sanphamtoc = null;
 
-  constructor(public alertCtrl: AlertController, private http: HttpClient , private file: File) {
+  constructor(public alertCtrl: AlertController, private http: HttpClient , private file: File, public navCtrl: NavController) {
     this.http.get('../../assets/data/sanphamtoc.json').subscribe((response) => {
       this.sanphamtoc = response;
     });
@@ -70,14 +71,6 @@ export class HomePage implements OnInit {
     //   this.reqObj = error;
     // });
 
-    // this.file.writeFile(this.file.externalDataDirectory , 'dark/test.json', 'hello,world,', {replace: true}).then(_ => {
-    //   this.showAlert('Directory exists');
-    //   console.log('Directory exists');
-    // }).catch(err => {
-    //   this.showAlert('Directory doesn\'t exists');
-    //   console.log('Directory doesn\'t exist')
-    // });
-
     this.file.checkDir(this.file.dataDirectory, 'tocvn').then(_ => {
       this.showAlert('Directory exists');
     }).catch(err => {
@@ -95,5 +88,17 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
+
+  productDetails(link, title){
+    let navigationExtras: NavigationExtras = {
+        queryParams: {
+          link: link,
+          title : title,
+            // refresh: refresh
+        }
+      };
+    this.navCtrl.navigateForward(['/tabs/home/product-details'], navigationExtras);
+  }
+
 
 }

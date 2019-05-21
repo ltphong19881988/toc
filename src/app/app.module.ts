@@ -10,11 +10,16 @@ import { File } from '@ionic-native/file/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 
+
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppComponent } from './app.component';
 import { FavoriteService } from './api/favorite.service';
 import { AppRoutingModule } from './app-routing.module';
 
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 
 
 
@@ -42,6 +47,8 @@ export function jwtOptionsFactory(storage) {
         deps: [Storage],
       }
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [
     StatusBar,
@@ -52,7 +59,9 @@ export function jwtOptionsFactory(storage) {
     // HttpClient,
     Toast,
     //IonicStorageModule,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Facebook,
+    
   ],
   bootstrap: [AppComponent]
 })

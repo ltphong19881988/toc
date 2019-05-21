@@ -3,5 +3,11 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/tabs",
+      "proxyUrl": "http://localhost:8100"
+    }
+  ]
 }

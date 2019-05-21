@@ -6,7 +6,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+// import { FacebookModule } from "@ionic-native/facebook/"
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../../../environments/environment';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AccountPage } from './account.page';
+
+
 
 const routes: Routes = [
   {
@@ -20,9 +28,16 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     IonicStorageModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  declarations: [AccountPage]
+  declarations: [AccountPage],
+  providers:[
+    Facebook,
+  ]
 })
 export class AccountPageModule {}

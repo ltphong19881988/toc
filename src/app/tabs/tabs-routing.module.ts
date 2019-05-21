@@ -17,7 +17,12 @@ const routes: Routes = [
               {
                 path: '',
                 loadChildren: './home/home.module#HomePageModule'
-              }
+              },
+              {
+                path: 'product-details',
+                loadChildren: 'src/app/pages/product-details/product-details.module#ProductDetailsPageModule',
+                //canActivate: [AuthGuardService]
+              },
             ]
         },
         {

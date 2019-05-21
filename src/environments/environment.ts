@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:5000'
+  url: 'http://localhost:5000',
+  firebase: {
+    apiKey: "AIzaSyBd4x5KgAspbiE-nmGyOWC22bFlU5P5G78",
+    authDomain: "social-login-b2f2c.firebaseapp.com",
+    databaseURL: "https://social-login-b2f2c.firebaseio.com",
+    projectId: "social-login-b2f2c",
+    storageBucket: "social-login-b2f2c.appspot.com",
+    messagingSenderId: "862527167240",
+    appId: "1:862527167240:web:b4212853acd7df78"
+  }
 };
 
 /*
