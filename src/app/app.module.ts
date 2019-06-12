@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Storage, IonicStorageModule } from '@ionic/storage';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NavParams } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { File } from '@ionic-native/file/ngx';
@@ -17,6 +17,7 @@ import { FavoriteService } from './api/favorite.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
@@ -39,6 +40,7 @@ export function jwtOptionsFactory(storage) {
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -56,8 +58,9 @@ export function jwtOptionsFactory(storage) {
     File,
     FavoriteService,
     HTTP,
-    // HttpClient,
+    HttpClientModule,
     Toast,
+    FCM,
     //IonicStorageModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Facebook,

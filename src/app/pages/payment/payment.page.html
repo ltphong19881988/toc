@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cart" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Thanh toán</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form  #form="ngForm" (ngSubmit)="confirmPayment(form)">
+      <ion-grid>
+        <ion-row color="primary" justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div text-center>
+              <h4>Thông tin người nhận!</h4>
+            </div>
+            <div padding>
+                <div>
+                    <ion-item>
+                        <ion-input name="receiver" type="text" placeholder="Họ tên người nhận (*)" ngModel required></ion-input>
+                      </ion-item>
+                </div>
+              <div >
+                  <ion-item>
+                      <ion-input name="phone" type="text" placeholder="Điện thoại (*)" ngModel ></ion-input>
+                    </ion-item>
+              </div>
+              
+              <div >
+                  <ion-item>
+                    <ion-input name="address" type="text" placeholder="Địa chỉ (*)" ngModel required></ion-input>
+                  </ion-item>
+              </div>
+              
+            </div>
+            <div padding>
+              <ion-button  size="large" type="submit"  expand="block" [disabled]='disabledSubmit'>Xác nhận</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>

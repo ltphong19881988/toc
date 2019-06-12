@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 import { HomePage } from './home.page';
 
@@ -21,8 +22,13 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     IonicModule,
+    
     RouterModule.forChild(routes)
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers:[
+    HttpClientModule,
+    Keyboard,
+  ]
 })
 export class HomePageModule {}

@@ -1,0 +1,15 @@
+.listCate ion-col .content {
+    border: 1px solid #eee8d5;
+    pointer-events: none;
+    font-style: italic;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
+
+.listCate ion-col .content ion-thumbnail{
+    margin: 0 auto;
+}

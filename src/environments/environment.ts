@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:5000',
+  url: 'http://localhost:8100',
+  host: 'http://139.180.135.76:2000',
   firebase: {
     apiKey: "AIzaSyBd4x5KgAspbiE-nmGyOWC22bFlU5P5G78",
     authDomain: "social-login-b2f2c.firebaseapp.com",

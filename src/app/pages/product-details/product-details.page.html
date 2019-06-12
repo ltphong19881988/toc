@@ -3,10 +3,66 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tabs/home" ></ion-back-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title *ngIf="product.postContent">{{product.postContent.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- Slide show -->
+  <ion-slides pager="true" #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)"  loop="true"  >
+    <ion-slide *ngFor="let slide of slider" padding>
+      <img [src]="slide.img" />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-card>
+    <ion-item (click)='toggleDescription()'>
+      <ion-label color='primary'>Mô tả</ion-label>
+      <ion-button fill="outline" slot="end" >
+        <ion-label [hidden]="!hideOpts.descriptions">Show</ion-label>
+        <ion-label [hidden]="hideOpts.descriptions">Hide</ion-label>
+      </ion-button>
+    </ion-item>
+  
+    <ion-card-content [hidden]="hideOpts.descriptions" [innerHTML]='product.postContent.descriptions'>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card id="detail-content">
+    <ion-item (click)='toggleContent()'>
+      <ion-label color='primary'>Chi tiết</ion-label>
+      <ion-button fill="outline" slot="end" >
+        <ion-label [hidden]="!hideOpts.content">Show</ion-label>
+        <ion-label [hidden]="hideOpts.content">Hide</ion-label>
+      </ion-button>
+    </ion-item>
+  
+    <ion-card-content [hidden]="hideOpts.content" [innerHTML]='product.postContent.content'>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card  id="orderFixed" color="medium">
+      <ion-item>
+        <ion-label>Giá bán : </ion-label>
+        <ion-label> {{product.normalPrice | currency: 'VND'}} </ion-label>
+      </ion-item>
+      <ion-item >
+          <!-- <ion-label color='primary'>
+            Số lượng
+          </ion-label> -->
+          <ion-button fill="outline" (click)="subQuantity()" >
+            <ion-icon name="remove"></ion-icon>
+          </ion-button>
+          <ion-input id="quantity" type="number" [(ngModel)]="quantity"></ion-input>
+          <ion-button fill="outline"  (click)="addQuantity()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+          <ion-button fill="outline" slot="end" (click)="addOrder()" [hidden]="hideOpts.orderButton">
+            <ion-label >Đặt hàng</ion-label>
+          </ion-button>
+      </ion-item>
+</ion-card>
+  
+    
 
 </ion-content>

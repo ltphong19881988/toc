@@ -46,17 +46,37 @@ const routes: Routes = [
           ]
         },
         {
-          path: 'account',
-          //canActivate: [AuthGuardService]
+          path: 'products',
+          //loadChildren: './services/services.module#ServicesPageModule',
           children : [
             {
               path: '',
+              loadChildren: './products/products.module#ProductsPageModule',
+            },
+            {
+              path: 'product-details',
+              loadChildren: 'src/app/pages/product-details/product-details.module#ProductDetailsPageModule',
+              //canActivate: [AuthGuardService]
+            },
+          ]
+        },
+        {
+          path: 'account',
+          children : [
+            {
+              path: '',
+              canActivate: [AuthGuardService],
               loadChildren: './account/account.module#AccountPageModule',
             },
             {
-              path: 'register',
-              loadChildren:  'src/app/pages/register/register.module#RegisterPageModule' ,
-              //canActivate: [AuthGuardService]
+              path: 'edit-profile',
+              loadChildren:  'src/app/pages/account/edit-profile/edit-profile.module#EditProfilePageModule' ,
+              canActivate : [AuthGuardService]
+            },
+            {
+              path: 'notification',
+              loadChildren:  'src/app/pages/account/notification/notification.module#NotificationPageModule' ,
+              canActivate : [AuthGuardService]
             },
           ]
         },
@@ -68,6 +88,8 @@ const routes: Routes = [
       redirectTo: 'tabs/home',
       pathMatch: 'full'
     },
+  // { path: 'products', loadChildren: './products/products.module#ProductsPageModule' },
+
   // { path: 'tabs/account', loadChildren: './account/account.module#AccountPageModule', canActivate: [AuthGuardService] },
 
   //{ path: 'services', loadChildren: './services/services.module#ServicesPageModule' }

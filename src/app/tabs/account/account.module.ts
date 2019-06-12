@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
-// import { FacebookModule } from "@ionic-native/facebook/"
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../../../environments/environment';

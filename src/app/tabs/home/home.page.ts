@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
 import { IonSlides } from '@ionic/angular';
 import { AlertController, NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { HTTP } from '@ionic-native/http/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { Toast } from '@ionic-native/toast/ngx';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -24,24 +27,60 @@ export class HomePage implements OnInit {
       img : '/assets/images/slide2.png'
     }
   ]
-
+  @ViewChild('mySlider') slides: IonSlides;
+  hidden = true;
   sanphamtoc = null;
+  quantity = 1;
+  promotionCode = '';
+  orderFixed = false;
+  promotionPrice = 0;
+  totalPrice = 0;
+  blockItems = [
+    {
+      title: 'Sản phẩm',
+      url: '/tabs/products',
+      icon: '/assets/images/icons/products.svg',
+      routerDirection : 'root',
+      badge: {status: false, value: 0},
+    },
+    {
+      title: 'Dịch vụ',
+      url: '/tabs/services',
+      icon: '/assets/images/icons/hair-services-f6821f.svg',
+      routerDirection : 'root',
+      badge: {status: false, value: 0},
+    },
+    {
+      title: 'Video ',
+      url: '/videos',
+      icon: '/assets/images/icons/youtube.svg',
+      routerDirection : 'forward',
+      badge: {status: false, value: 0},
+    },
+    {
+      title: 'Tóc đẹp',
+      url: '/videos',
+      icon: '/assets/images/icons/female-hair-shape-f6821f.svg',
+      routerDirection : 'forward',
+      badge: {status: false, value: 0},
+    },
+    {
+      title: 'Tài khoản',
+      url: '/tabs/account',
+      icon: '/assets/images/icons/account.svg',
+      routerDirection : 'forward',
+      badge: {status: false, value: 0},
+    },
+  ];
+  trustedVideoUrl: SafeResourceUrl;
 
-  constructor(public alertCtrl: AlertController, private http: HttpClient , private file: File, public navCtrl: NavController) {
-    this.http.get('../../assets/data/sanphamtoc.json').subscribe((response) => {
-      this.sanphamtoc = response;
-    });
-    // this.http.get('/src/assets/data/sanphamtoc.json', {}, {})
-    // .then(data => {
-    //   console.log(JSON.parse(data.data));
-    // })
-    // .catch(error => {
-    //   console.log('dada', error);
-    //   this.reqObj = error;
+  constructor(public alertCtrl: AlertController, private http: HTTP , private file: File, public navCtrl: NavController,
+              private toast: Toast, private zone: NgZone, private kb: Keyboard, private domSanitizer: DomSanitizer) {
+    // this.http.get('../../assets/data/sanphamtoc.json').subscribe((response) => {
+    //   this.sanphamtoc = response;
     // });
   }
 
-  @ViewChild('mySlider') slides: IonSlides;
 
   slidesDidLoad() {
     this.slides.startAutoplay();
@@ -50,43 +89,30 @@ export class HomePage implements OnInit {
     };
   }
 
-  async showAlert(mes) {
-    let alert = await this.alertCtrl.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: mes,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-
-  getRequest(){
-    // this.http.get('https://toc.vn/danh-muc/san-pham-toc/', {}, {})
-    // .then(data => {
-    //   // let listProducts = $('box-text-products');
-    //   this.reqObj = 'efafewa';
-      
-    // })
-    // .catch(error => {
-    //   this.reqObj = error;
-    // });
-
-    this.file.checkDir(this.file.dataDirectory, 'tocvn').then(_ => {
-      this.showAlert('Directory exists');
-    }).catch(err => {
-      this.showAlert('Directory doesn\'t exists');
-      this.file.createDir(this.file.dataDirectory, 'tocvn', true).then(res => {
-        this.showAlert('Directory create' + res);
-      }).catch(err => {
-        this.showAlert('create directory error' + JSON.stringify(err));
+  ngOnInit() {
+    this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/R6XrIXbhC1I');
+    console.log('trusted video', this.trustedVideoUrl);
+    window.addEventListener('keyboardDidHide', () => {
+      // Describe your logic which will be run each time keyboard is closed.
+      this.zone.run(() => {
+        this.orderFixed = false;
       });
     });
-
-
+    window.addEventListener('keyboardDidShow', (event) => {
+      // Describe your logic which will be run each time when keyboard is about to be shown.
+      this.zone.run(() => {
+        this.orderFixed = true;
+      });
+    });
   }
-  
 
-  ngOnInit() {
+  scroll(ev) {
+    console.log('scroll event scrollTop', ev.detail.scrollTop);
+    console.log('scroll event detail', ev.detail);
+  }
+
+  swipeEvent(ev){
+    console.log('swipe event', ev);
   }
 
   productDetails(link, title){
@@ -98,6 +124,11 @@ export class HomePage implements OnInit {
         }
       };
     this.navCtrl.navigateForward(['/tabs/home/product-details'], navigationExtras);
+  }
+
+
+  goToNotification(){
+    this.navCtrl.navigateForward(['/tabs/account/notification']);
   }
 
 

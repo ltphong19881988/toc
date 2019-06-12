@@ -13,3 +13,5 @@ ionic cordova run android --target=Nexus_5X_API_28
 
 // Icon and Splash screen change
 https://www.youtube.com/watch?v=dF_QvXxxNOE
+
+EAAQ6yn6ZCLnQBAEN9Q4fjNGN3whvSMDDK24ZAUepWz0UoNO8ysbtXhspteMpGARhEyrwDZC2ZBSRt2O2RvfPRK1W5wjcZAyUofUmxlFCmklreeAhuBz7REd4XJIylTDbgZBzZAZBnFpjki0KtZCPPP6CO6kMS7JsWHOyP6JWN6BfAPFIKm60apTgbTaNNjDBLdfd8F2ZCHJf8ZAdNFMdUfV8KZCGasWxwFXZB7UOnHOGFqeSkMgZDZD

@@ -2,11 +2,13 @@ import { Storage, IonicStorageModule } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { UsernameValidator } from '../../lib/username.validator';
+import { UsernameValidator } from '../../../lib/username.validator';
 // import { PhoneValidator } from '../../lib/phone.validator';
-import { PasswordValidator  } from '../../lib/password.validator';
+import { PasswordValidator  } from '../../../lib/password.validator';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { HTTP } from '@ionic-native/http/ngx';
+import { FunctionService } from 'src/app/api/function.service';
 
 @Component({
   selector: 'app-register',
@@ -73,7 +75,7 @@ export class RegisterPage implements OnInit {
     ],
   };
 
-  constructor(private storage: Storage, private router: Router) { 
+  constructor(private storage: Storage, private router: Router, private http: HTTP, private funcs : FunctionService) { 
     
   }
 
@@ -83,16 +85,33 @@ export class RegisterPage implements OnInit {
 
 
   register(form){
-    var authUser = {
+    let authUser = {
       email : this.validations_email.value.email,
+      username : this.validations_email.value.email,
       phone : this.validations_country.value.phone,
-      fullName : '',
+      first_name : '',
+      last_name : '',
       password : this.validations_password.value.password,
     }
-    this.storage.set('authUser', JSON.stringify(authUser)).then((val) => {
-      console.log('result', val);
-      this.router.navigateByUrl('/tabs/account');
+    let headers = {
+      'Content-Type': 'application/json'
+    }
+    this.http.post('http://139.180.135.76:2000/api/user/add-user', {user : authUser}, headers)
+    .then(result => {
+      let abc = JSON.parse(result.data);
+      if(abc.status){
+        this.funcs.showAlert(abc.mes);
+        // this.storage.set('authUser', JSON.stringify(abc.user)).then((val) => {
+          this.router.navigateByUrl('/tabs/account');
+        // });
+      }else{
+        this.funcs.showAlert(abc.mes);
+      }
+    })
+    .catch(error => {
+      // callback( JSON.stringify(error));
     });
+
   }
 
 }

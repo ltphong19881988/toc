@@ -6,8 +6,112 @@
 // ion-slides {
 //   max-height: 300px;
 // }
+ion-header{
+    ion-toolbar{
+        --background: transparent;
+        ion-card {
+            text-align: center;
+            color: #c83565;
+            background: rgba(254, 254, 254, 0.5);
+            margin: 0px;
+            padding: 5px;
+            ion-icon {
+                font-size: 30px;
+                color: #c83565;
+            }
+        }
+    }
+    background: url(../../../assets/images/header_bg.png) 0 0/100% 100% no-repeat;
+}
+
+ion-content {
+        --background: url(../../../assets/images/content_bg.jpg) repeat;
+    ion-card {
+        margin: 0px;
+        background: rgba(254, 254, 254, 0.8);
+    }
+
+    
+}
+
+.container {
+    overflow: auto; 
+    white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .scroll {
+        position: relative;
+        overflow: hidden;
+        ion-card.video {
+            display: inline-flex;
+            margin: 5px;
+        }
+    }
+    div[scrollx=true] {
+        overflow-x: auto;
+    }
+}
+
+
+
+ion-toolbar {
+    ion-title{
+        float: left;
+    }
+    // ion-icon {
+    //     float: right;
+    //     margin-right: 15px;
+    //     font-size: 20px;
+    // }
+}
+
 ion-card-content ion-row ion-col ion-img {
     width: 95%; 
     max-width: 100px;
     min-width: 80px;
+}
+
+.orderFixed {
+    position: fixed;
+    bottom: 0px;
+    z-index: 1;
+    margin: 0px auto;
+    width: 100%;
+    padding: 2px;
+   
+}
+ion-input.quantity{
+    width: 70px;
+    border: 1px solid #12693f;
+    border-radius: 5px;
+    flex: none;
+    margin: 0px 10px;
+    height: 30px;
+    text-align: center;
+    input.native-input{
+        margin-left: -4px;
+    }
+}
+.orderFixed ion-button, .promotion ion-button {
+    height: 30px;
+}
+
+.promotion ion-row {
+    width: 100%;
+}
+
+.promotion ion-label {
+    line-height: 30px;
+}
+
+.promotion ion-input.quantity {
+    width: 100%; margin: 0 auto;
+}
+
+ion-card.blockItem {
+    text-align: center;
+    ion-img {
+        margin: 0px 25px;
+    }
 }

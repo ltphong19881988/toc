@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{sub.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="listCate" *ngIf="category.length > 0; else nocategory">
+    <ion-row>
+      <ion-col size="6" *ngFor="let c of category"  (click)="goToSub(c._id, c.categoryType._id)" >
+        <div class="content" >
+          <ion-thumbnail slot="start">
+            <ion-img src="/assets/images/black-long-hair.png"></ion-img>
+          </ion-thumbnail>
+          <ion-text>{{c.name}}</ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ng-template #nocategory>
+    Không có danh mục con
+  </ng-template> 
+
+
+  <div *ngIf="products.length > 0; else noproducts">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          <h1>Sản phẩm </h1>
+        </ion-label>
+      </ion-list-header>
+    </ion-list>
+    <ion-card *ngFor ="let item of products" color="">
+        <ion-row>
+            <ion-col size="4">
+                  <ion-img (click)="goToProductDetails(item)" [src]="host + item.pictures[0]"></ion-img>
+            </ion-col>
+            <ion-col size="8">
+                  <ion-text (click)="goToProductDetails(item)" ><p>{{item.postContent.title}}</p></ion-text>
+                  <ion-text color="danger">
+                    
+                    <p><ion-icon name="pricetags"></ion-icon> {{item.normalPrice}}</p>
+                  </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+    
+  </div>
+
+  <ng-template #noproducts>
+    Không có sản phẩm
+  </ng-template> 
+
+
+</ion-content>

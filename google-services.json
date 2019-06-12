@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "862527167240",
+    "firebase_url": "https://social-login-b2f2c.firebaseio.com",
+    "project_id": "social-login-b2f2c",
+    "storage_bucket": "social-login-b2f2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862527167240:android:d425e8373e45f893",
+        "android_client_info": {
+          "package_name": "io.ionic.toc.vn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862527167240-97mpq9v48kjvjsqj27d8rvrokp0flfrk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvouJXIzBlU1joYfZ-t8307qpCORqVYWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862527167240-97mpq9v48kjvjsqj27d8rvrokp0flfrk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
